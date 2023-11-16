@@ -126,6 +126,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Like",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

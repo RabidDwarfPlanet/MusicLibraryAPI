@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicLibraryAPI.Data;
+using MusicLibraryAPI.Migrations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -69,6 +70,21 @@ namespace MusicLibraryAPI.Controllers
                 return NoContent();
             }
             else { return NotFound(); }
+        }
+
+        // PATCH api/<SongController>/5
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id)
+        {
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
+            if (song == null) { return NotFound(); }
+            else
+            {
+                song.Likes++;
+                _context.Songs.Update(song);
+                _context.SaveChanges();
+                return Ok(song);
+            }
         }
     }
 }
