@@ -27,7 +27,7 @@ namespace MusicLibraryAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
             if (song == null) { return NotFound(); }
             else { return Ok(song); }
 
@@ -46,7 +46,7 @@ namespace MusicLibraryAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Models.Song updatedSong)
         {
-            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
             if (song == null) { return NotFound(); }
             else
             {
@@ -61,10 +61,14 @@ namespace MusicLibraryAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
-            _context.Songs.Remove(song);
-            _context.SaveChanges();
-            return NoContent();
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
+            if(song != null)
+            {
+                _context.Songs.Remove(song);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            else { return NotFound(); }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicLibraryAPI.Data;
 
@@ -10,9 +11,11 @@ using MusicLibraryAPI.Data;
 namespace MusicLibraryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116173822_LikeAddition")]
+    partial class LikeAddition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +29,7 @@ namespace MusicLibraryAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Album")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Artist")

@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "b6657fe4-4a2e-4b7b-ad5f-286626983f86",
+		"name": "ASPNET_MusicLibrary_WebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31184245"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"Talking to Myself\",\r\n    \"Artist\": \"Watsky\",\r\n    \"Album\": \"x Infinity\",\r\n    \"ReleaseDate\": \"2016-07-25\",\r\n    \"Genre\": \"Rap\",\r\n    \"Likes\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7042/api/Songs",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"Talking to Myself\",\r\n    \"Artist\": \"Watsky\",\r\n    \"Album\": \"x Infinity\",\r\n    \"ReleaseDate\": \"2016-07-25\",\r\n    \"Genre\": \"Rap\",\r\n    \"Likes\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
