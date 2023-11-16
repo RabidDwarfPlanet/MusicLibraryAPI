@@ -17,34 +17,54 @@ namespace MusicLibraryAPI.Controllers
 
         // GET: api/<SongController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var songs = _context.Songs.ToList();
+            return Ok(songs);
         }
 
         // GET api/<SongController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
+            if (song == null) { return NotFound(); }
+            else { return Ok(song); }
+
         }
 
         // POST api/<SongController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Models.Song song)
         {
+            _context.Songs.Add(song);
+            _context.SaveChanges();
+            return StatusCode(201, song);
         }
 
         // PUT api/<SongController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Models.Song updatedSong)
         {
+            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
+            if (song == null) { return NotFound(); }
+            else
+            {
+                song = updatedSong;
+                _context.Songs.Update(song);
+                _context.SaveChanges();
+                return Ok(song);
+            }
         }
 
         // DELETE api/<SongController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var song = _context.Songs.Where(m => m.Id == id).SingleOrDefault();
+            _context.Songs.Remove(song);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
