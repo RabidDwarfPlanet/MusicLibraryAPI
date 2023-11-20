@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicLibraryAPI.Data;
 
@@ -10,41 +11,16 @@ using MusicLibraryAPI.Data;
 namespace MusicLibraryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116192938_initialization")]
+    partial class initialization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("MusicLibraryAPI.Models.Playlist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Playlist");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "EDM"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Lyrical"
-                        });
-                });
 
             modelBuilder.Entity("MusicLibraryAPI.Models.Song", b =>
                 {
@@ -66,9 +42,6 @@ namespace MusicLibraryAPI.Migrations
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlaylistId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime(6)");
 
@@ -77,8 +50,6 @@ namespace MusicLibraryAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlaylistId");
 
                     b.ToTable("Songs");
 
@@ -131,20 +102,6 @@ namespace MusicLibraryAPI.Migrations
                             ReleaseDate = new DateTime(2022, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Vainilla"
                         });
-                });
-
-            modelBuilder.Entity("MusicLibraryAPI.Models.Song", b =>
-                {
-                    b.HasOne("MusicLibraryAPI.Models.Playlist", "Playlist")
-                        .WithMany("Songs")
-                        .HasForeignKey("PlaylistId");
-
-                    b.Navigation("Playlist");
-                });
-
-            modelBuilder.Entity("MusicLibraryAPI.Models.Playlist", b =>
-                {
-                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }

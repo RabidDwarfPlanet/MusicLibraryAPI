@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using MusicLibraryAPI.Data;
 using MusicLibraryAPI.Migrations;
+using MusicLibraryAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -72,9 +74,9 @@ namespace MusicLibraryAPI.Controllers
             else { return NotFound(); }
         }
 
-        // PATCH api/<SongController>/5
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id)
+        // PUT api/<SongController>/5
+        [HttpPut("likes/{id}")]
+        public IActionResult Like(int id)
         {
             var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
             if (song == null) { return NotFound(); }
@@ -86,5 +88,60 @@ namespace MusicLibraryAPI.Controllers
                 return Ok(song);
             }
         }
+
+        // PUT api/<SongController>/5
+        [HttpPut("dislikes/{id}")]
+        public IActionResult Dislike(int id)
+        {
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
+            if (song == null) { return NotFound(); }
+            else
+            {
+                song.Likes--;
+                _context.Songs.Update(song);
+                _context.SaveChanges();
+                return Ok(song);
+            }
+        }
+
+        ////PATCH api/<SongController>/5
+        //[HttpPatch("{id}")]
+        //public IActionResult Patch(int id, [FromBody] JsonPatchDocument<Song> patchDocument)
+        //{
+        //    var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
+        //    if (song == null) { return NotFound(); }
+        //    else
+        //    {
+        //        patchDocument.ApplyTo(song, ModelState);
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+        //        _context.Songs.Update(song);
+        //        _context.SaveChanges();
+        //        return Ok(song);
+        //    }
+        //}
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody] SongUpdaterDTO songUpdaterDTO)
+        {
+            var song = _context.Songs.Where(s => s.Id == id).SingleOrDefault();
+            if (song == null) { return NotFound(); }
+            else
+            {
+
+                if(songUpdaterDTO.Title != null) { song.Title = songUpdaterDTO.Title; }
+                if (songUpdaterDTO.Genre != null) { song.Genre = songUpdaterDTO.Genre; }
+                if (songUpdaterDTO.Album != null) { song.Album = songUpdaterDTO.Album; }
+                if (songUpdaterDTO.Likes != null) { song.Likes = (int)songUpdaterDTO.Likes; }
+                if (songUpdaterDTO.ReleaseDate != null) { song.ReleaseDate = (DateTime)songUpdaterDTO.ReleaseDate; }
+                _context.Songs.Update(song);
+                _context.SaveChanges();
+                return Ok(song);
+            }
+        }
+
+
     }
 }

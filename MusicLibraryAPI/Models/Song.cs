@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicLibraryAPI.Models
 {
@@ -12,5 +13,9 @@ namespace MusicLibraryAPI.Models
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
         public int Likes { get; set; }
+
+        [ForeignKey("Playlist")]
+        public int? PlaylistId { get; set; }
+        public Playlist? Playlist { get; set; }
     }
 }
