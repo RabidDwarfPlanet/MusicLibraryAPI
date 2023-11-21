@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Get All",
+			"name": "Get All Songs",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -27,7 +27,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Id",
+			"name": "Get Song by Id",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -48,7 +48,7 @@
 			"response": []
 		},
 		{
-			"name": "Create",
+			"name": "Create Song",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -77,7 +77,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete",
+			"name": "Delete Song",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -98,7 +98,7 @@
 			"response": []
 		},
 		{
-			"name": "Update",
+			"name": "Update Song",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -128,12 +128,21 @@
 			"response": []
 		},
 		{
-			"name": "Like",
+			"name": "Specific Update Song",
 			"request": {
 				"method": "PATCH",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:7042/api/Songs/1",
+					"raw": "https://localhost:7042/api/Songs/4",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -142,7 +151,176 @@
 					"path": [
 						"api",
 						"Songs",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/likes/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"likes",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dislike",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Songs/dislikes/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Songs",
+						"dislikes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Song to Playlist",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlists/1/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlists",
+						"1",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Playlists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlists",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlist by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlist/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Playlist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlist/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Playlist",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlist/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Playlist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7042/api/Playlist",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7042",
+					"path": [
+						"api",
+						"Playlist"
 					]
 				}
 			},
