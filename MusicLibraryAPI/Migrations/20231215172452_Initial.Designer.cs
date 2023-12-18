@@ -11,8 +11,8 @@ using MusicLibraryAPI.Data;
 namespace MusicLibraryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231117174741_Playlists")]
-    partial class Playlists
+    [Migration("20231215172452_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,18 @@ namespace MusicLibraryAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Playlist");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "EDM"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Lyrical"
+                        });
                 });
 
             modelBuilder.Entity("MusicLibraryAPI.Models.Song", b =>

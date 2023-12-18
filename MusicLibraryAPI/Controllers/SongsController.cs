@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using MusicLibraryAPI.Data;
-using MusicLibraryAPI.Migrations;
 using MusicLibraryAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -53,7 +52,12 @@ namespace MusicLibraryAPI.Controllers
             if (song == null) { return NotFound(); }
             else
             {
-                song = updatedSong;
+                song.Title = updatedSong.Title;
+                song.Artist = updatedSong.Artist;
+                song.Album = updatedSong.Album;
+                song.ReleaseDate = updatedSong.ReleaseDate;
+                song.Genre = updatedSong.Genre;
+                song.Likes = updatedSong.Likes;
                 _context.Songs.Update(song);
                 _context.SaveChanges();
                 return Ok(song);
